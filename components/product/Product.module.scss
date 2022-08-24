@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.product {
+  height: 300px;
+  width: 200px;
+  border: solid red 1px;
+  margin-bottom: 20px;
+}

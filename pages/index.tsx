@@ -1,10 +1,9 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
 
 import { gql } from '@apollo/client';
 import client from '../apollo/apolloClient';
+import ProductContainer from '../components/product/Product.container';
 
 export async function getServerSideProps() {
   const { data } = await client.query({
@@ -12,6 +11,7 @@ export async function getServerSideProps() {
       query pokemon {
         pokemon {
           name
+          pokedex_number
         }
       }
     `,
@@ -25,14 +25,7 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = (props: any) => {
-  console.log(props.pokemon);
-  return (
-    <ul>
-      {props.pokemon.map(({ name }: any) => (
-        <li key={name}>{name}</li>
-      ))}
-    </ul>
-  );
+  return <ProductContainer products={props.pokemon} />;
 };
 
 export default Home;
